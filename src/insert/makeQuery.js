@@ -18,34 +18,36 @@ function makeQuery(input) {
 
   const query = (index) => {
     const results = tree.search(index);
-    console.log("----- RESULTS -----\n" + results.length);
-    if (results.length > 0) {
-      const resultIndex = findIndexOfSmallestValue(results);
-      console.log("----- INDEX -----\n" + JSON.stringify(resultIndex));
-      const result = results[resultIndex];
-      console.log("----- RESULT -----\n");
-      console.log(result);
-      const val = result.val;
-      return val;
-    }
-    //console.log(results);
-    return undefined; // No range contains the index
+    return findFirstFromOriginal(results);
   };
   // Find the first range containing an index
   return query;
 }
 
-function findIndexOfSmallestValue(arr) {
-  let j = 0;
-  let value = arr[j].index;
-  for (let i = 1; i < arr.length; i++) {
-    const newValue = arr[i].index;
-    if (newValue < value) {
-      value = newValue;
-      j = i;
-    }
+function findFirstFromOriginal(results) {
+  console.log("----- RESULTS -----\n" + results.length + "\n");
+  console.log(results);
+  if (results.length > 0) {
+    const resultIndex = findIndexOfFirst(results);
+    console.log("----- INDEX -----\n" + JSON.stringify(resultIndex));
+    const result = results[resultIndex];
+    console.log("----- RESULT -----\n");
+    console.log(result);
+    const val = result.val;
+    return val;
   }
-  return j;
+  //console.log(results);
+  return undefined; // No range contains the index
+}
+
+// Find the index of arr
+// with the sallest index from the original array
+function findIndexOfFirst(arr) {
+  return arr.reduce(
+    (minIndex, current, currentIndex) =>
+      current.index < arr[minIndex].index ? currentIndex : minIndex,
+    0
+  );
 }
 
 module.exports = makeQuery;
