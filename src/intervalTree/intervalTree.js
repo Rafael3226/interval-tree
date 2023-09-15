@@ -1,4 +1,3 @@
-const Interval = require("./interval.js");
 const IntervalNode = require("./intervalNode.js");
 
 class IntervalTree {
@@ -8,7 +7,7 @@ class IntervalTree {
 
   build(nodes) {
     this.root = this._build(
-      nodes.sort((a, b) => a.interval.start - b.interval.end)
+      nodes.sort((a, b) => a.interval.start - b.interval.start)
     );
   }
 
