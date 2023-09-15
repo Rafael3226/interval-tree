@@ -30,9 +30,9 @@ function getFirst(results) {
 
 // Find the index of arr with the samallest index from the original array
 function getFirstIndex(results) {
-  return arr.reduce(
+  return results.reduce(
     (minIndex, current, currentIndex) =>
-      current.index < arr[minIndex].index ? currentIndex : minIndex,
+      current.index < results[minIndex].index ? currentIndex : minIndex,
     0
   );
 }
