@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-init": "node ./init/makeQuery.test.js",
+    "test-solution": "node ./src/makeQuery/makeQuery.test.js",
     "run": "echo \"Error: no run script specified\" && exit 1"
   },
   "keywords": [],
