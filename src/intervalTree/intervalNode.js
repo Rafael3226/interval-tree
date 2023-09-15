@@ -1,10 +1,9 @@
 class IntervalNode {
   constructor(interval, data) {
+    this.data = data;
     this.interval = interval;
-    this.max = interval.end; // Maximum endpoint in this subtree
     this.left = null;
     this.right = null;
-    this.data = data;
   }
 
   parseData() {

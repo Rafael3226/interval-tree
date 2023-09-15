@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test-init": "node ./init/makeQuery.test.js",
-    "test-solution": "node ./src/makeQuery/makeQuery.test.js",
+    "test-insert": "node ./src/insert/makeQuery.test.js",
+    "test-build": "node ./src/build/makeQuery.test.js",
     "run": "echo \"Error: no run script specified\" && exit 1"
   },
   "keywords": [],

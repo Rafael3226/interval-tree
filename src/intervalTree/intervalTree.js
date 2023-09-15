@@ -1,29 +1,48 @@
+const Interval = require("./interval.js");
 const IntervalNode = require("./intervalNode.js");
 
 class IntervalTree {
   constructor() {
     this.root = null;
   }
-  insert(interval, data) {
-    this.root = this._insert(this.root, interval, data);
+
+  build(nodes) {
+    this.root = this._build(
+      nodes.sort((a, b) => a.interval.start - b.interval.end)
+    );
   }
 
-  _insert(node, interval, data) {
-    if (node === null) {
-      return new IntervalNode(interval, data);
+  _build(nodes) {
+    if (nodes.length === 0) {
+      return null;
     }
 
-    // Update the maximum endpoint in this subtree
-    node.max = Math.max(node.max, interval.end);
+    const middle = Math.floor(nodes.length / 2);
+    let { interval, data } = nodes[middle];
+    const middleNode = new IntervalNode(interval, data);
+    middleNode.left = this._build(nodes.slice(0, middle));
+    middleNode.right = this._build(nodes.slice(middle + 1));
+
+    return middleNode;
+  }
+
+  insert(node) {
+    this.root = this._insert(this.root, node);
+  }
+
+  _insert(parent, child) {
+    if (parent === null) {
+      return child;
+    }
 
     // Choose the subtree to insert into based on start values
-    if (interval.start < node.interval.start) {
-      node.left = this._insert(node.left, interval, data);
+    if (child.interval.start < parent.interval.start) {
+      parent.left = this._insert(parent.left, child);
     } else {
-      node.right = this._insert(node.right, interval, data);
+      parent.right = this._insert(parent.right, child);
     }
 
-    return node;
+    return parent;
   }
 
   search(key) {
