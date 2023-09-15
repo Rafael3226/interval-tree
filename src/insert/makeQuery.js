@@ -22,12 +22,9 @@ function getFirst(results) {
   if (results.length > 0) {
     const resultIndex = getFirstIndex(results);
     const result = results[resultIndex];
-    console.log("----- RESULT -----\n");
-    console.log(result);
     const val = result.val;
     return val;
   }
-  //console.log(results);
   return undefined; // No range contains the index
 }
 

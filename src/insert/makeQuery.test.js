@@ -18,7 +18,6 @@ function testCompareFunctions(input, testCases) {
   const initialQuery = makeQueryInitial(input);
 
   for (const testCase of testCases) {
-    console.log(`----- Test Case Value: ${testCase} -----`);
     const expected = initialQuery(testCase);
     const actual = solutionQuery(testCase);
     assert.strictEqual(
